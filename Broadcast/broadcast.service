@@ -1,0 +1,20 @@
+[Unit]
+Description=P2P UDP Broadcast and Multicast Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/vault/Projects/internship
+ExecStart=/vault/Projects/internship/broadcast-service -port 9999 -web :8080
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=broadcast-service
+
+# Security hardening (optional but recommended)
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

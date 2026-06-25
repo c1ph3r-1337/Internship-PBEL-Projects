@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Broadcast Service Dashboard</title>
+    <!-- Outfit Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="glowing-orb" id="orb-1"></div>
+    <div class="glowing-orb" id="orb-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="pulse-icon"></div>
+                <h1>Broadcast Network</h1>
+                <span class="badge">P2P Node</span>
+            </div>
+            <div class="node-info" id="local-node-info">
+                <span class="label">Local Node:</span>
+                <span class="value" id="local-host">Resolving...</span>
+                <span class="divider">|</span>
+                <span class="value" id="local-ip">0.0.0.0</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="app-main">
+            <!-- Sidebar: Active Peer Directory -->
+            <aside class="sidebar card">
+                <div class="card-header">
+                    <h2>Active Peers</h2>
+                    <span class="count-badge" id="peer-count">0</span>
+                </div>
+                <div class="peer-list-container">
+                    <ul class="peer-list" id="peer-list">
+                        <!-- Dynamic Peer Nodes will be injected here -->
+                        <div class="loading-placeholder">
+                            <div class="spinner"></div>
+                            <span>Scanning network...</span>
+                        </div>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Chat Stream Panel -->
+            <section class="chat-section card">
+                <div class="card-header">
+                    <h2>Broadcast Channel</h2>
+                    <div class="channel-status">
+                        <span class="status-dot green"></span>
+                        <span class="status-text">Listening on UDP port 9999</span>
+                    </div>
+                </div>
+                
+                <div class="messages-container" id="messages-container">
+                    <!-- Dynamic Messages will be injected here -->
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-icon">📡</div>
+                        <h3>No broadcasts yet</h3>
+                        <p>Send a message below to broadcast it to all hosts on the local network.</p>
+                    </div>
+                </div>
+
+                <!-- Input Deck -->
+                <div class="input-deck">
+                    <form id="broadcast-form" class="broadcast-form">
+                        <textarea 
+                            id="message-input" 
+                            placeholder="Type a message to broadcast to all nodes... (Press Enter to send)" 
+                            rows="2" 
+                            required
+                        ></textarea>
+                        <button type="submit" class="btn-send" id="btn-send">
+                            <span>Broadcast</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="send-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
