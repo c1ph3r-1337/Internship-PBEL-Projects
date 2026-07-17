@@ -12,7 +12,7 @@ This internship project presents a practical cybersecurity policy suite and inci
 
 ## Project Report
 
-[View the complete DOCX report](./Cybersecurity_Policies_and_Incident_Response_Plan_Small_Business%281%29.docx)
+[View the complete DOCX report](https://cybersecurity-policies-and-incident-response-plan-small-busines.tiiny.site/)
 
 ## Purpose
 
