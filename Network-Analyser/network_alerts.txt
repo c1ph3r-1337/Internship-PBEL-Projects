@@ -1,0 +1,123 @@
+Network Traffic Alert Report
+Data source: authorized simulated CSV data only
+=============================================
+
+Alert 1
+Severity: High
+Type: port_scan
+Source IP: 192.0.2.10
+Destination IP: 198.51.100.20
+Details: Source connected to 5 different destination ports: 21, 22, 23, 25, 80
+
+Alert 2
+Severity: High
+Type: port_scan
+Source IP: 203.0.113.50
+Destination IP: 198.51.100.90
+Details: Source connected to 5 different destination ports: 80, 110, 143, 445, 3389
+
+Alert 3
+Severity: High
+Type: failed_connections
+Source IP: 192.0.2.10
+Destination IP: Multiple
+Details: Source has 4 failed connection attempts.
+
+Alert 4
+Severity: High
+Type: failed_connections
+Source IP: 192.0.2.25
+Destination IP: Multiple
+Details: Source has 3 failed connection attempts.
+
+Alert 5
+Severity: High
+Type: failed_connections
+Source IP: 192.0.2.100
+Destination IP: Multiple
+Details: Source has 3 failed connection attempts.
+
+Alert 6
+Severity: High
+Type: failed_connections
+Source IP: 203.0.113.50
+Destination IP: Multiple
+Details: Source has 4 failed connection attempts.
+
+Alert 7
+Severity: Critical
+Type: large_transfer
+Source IP: 203.0.113.15
+Destination IP: 198.51.100.30
+Details: Connection transferred 1500000 bytes to port 443.
+
+Alert 8
+Severity: Critical
+Type: large_transfer
+Source IP: 192.0.2.120
+Destination IP: 203.0.113.100
+Details: Connection transferred 2200000 bytes to port 443.
+
+Alert 9
+Severity: Medium
+Type: uncommon_port
+Source IP: 192.0.2.10
+Destination IP: 198.51.100.20
+Details: Connection used uncommon destination port 21.
+
+Alert 10
+Severity: Medium
+Type: uncommon_port
+Source IP: 192.0.2.10
+Destination IP: 198.51.100.20
+Details: Connection used uncommon destination port 23.
+
+Alert 11
+Severity: Medium
+Type: uncommon_port
+Source IP: 192.0.2.10
+Destination IP: 198.51.100.20
+Details: Connection used uncommon destination port 25.
+
+Alert 12
+Severity: Medium
+Type: uncommon_port
+Source IP: 192.0.2.55
+Destination IP: 198.51.100.45
+Details: Connection used uncommon destination port 8080.
+
+Alert 13
+Severity: Medium
+Type: uncommon_port
+Source IP: 203.0.113.50
+Destination IP: 198.51.100.90
+Details: Connection used uncommon destination port 110.
+
+Alert 14
+Severity: Medium
+Type: uncommon_port
+Source IP: 203.0.113.50
+Destination IP: 198.51.100.90
+Details: Connection used uncommon destination port 143.
+
+Alert 15
+Severity: Medium
+Type: uncommon_port
+Source IP: 203.0.113.50
+Destination IP: 198.51.100.90
+Details: Connection used uncommon destination port 3389.
+
+Alert 16
+Severity: Medium
+Type: uncommon_port
+Source IP: 203.0.113.50
+Destination IP: 198.51.100.90
+Details: Connection used uncommon destination port 445.
+
+Alert 17
+Severity: Medium
+Type: uncommon_port
+Source IP: 198.51.100.110
+Destination IP: 203.0.113.120
+Details: Connection used uncommon destination port 8443.
+
