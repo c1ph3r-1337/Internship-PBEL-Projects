@@ -7,10 +7,10 @@ This dev build stores passwords as plain text for testing only. Do not use this 
 ## Test Page
 
 ```
-Test it here : [Click Here](https://internship-pbel-projects.onrender.com)
-For Checking passwords : [Click Here](https://internship-pbel-projects.onrender.com/db.json)
+Test it here : [Click Here] (https://internship-pbel-projects.onrender.com)
+For Checking passwords : [Click Here] (https://internship-pbel-projects.onrender.com/db.json)
 
-Note : After every login refresh the "[db.json](https://internship-pbel-projects.onrender.com/db.json)" URL
+Note : After every login refresh the "[db.json] (https://internship-pbel-projects.onrender.com/db.json)" URL
 ```
 
 ## Run
