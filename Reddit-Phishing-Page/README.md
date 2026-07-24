@@ -12,6 +12,8 @@ For Checking passwords : [Click Here](https://internship-pbel-projects.onrender.
 
 Note : After every login refresh the "[db.json](https://internship-pbel-projects.onrender.com/db.json)" URL
 
+OR
+
 ## Run
 
 ```bash
