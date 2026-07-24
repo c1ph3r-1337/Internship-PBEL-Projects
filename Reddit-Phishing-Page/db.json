@@ -1,45 +1,4 @@
 {
-  "users": [
-    {
-      "id": "usr_268627d1-e069-49ac-ba35-411cd413c701",
-      "username": "hello",
-      "email": "",
-      "displayName": "hello",
-      "password": "asfaf",
-      "createdAt": "2026-07-24T02:41:44.553Z"
-    },
-    {
-      "id": "usr_88d725bc-0523-4c89-be82-9f690d304cec",
-      "username": "username",
-      "email": "",
-      "displayName": "username",
-      "password": "123456",
-      "createdAt": "2026-07-24T02:58:21.996Z"
-    },
-    {
-      "id": "usr_6e7d22d7-216d-458c-aea1-159daef82d77",
-      "username": "class",
-      "email": "",
-      "displayName": "class",
-      "password": "jaskaran",
-      "createdAt": "2026-07-24T02:59:17.063Z"
-    }
-  ],
-  "sessions": [
-    {
-      "id": "ses_ce3a00f1-ae4e-4d41-b8a8-13387cad38f9",
-      "userId": "usr_268627d1-e069-49ac-ba35-411cd413c701",
-      "createdAt": "2026-07-24T02:41:44.553Z"
-    },
-    {
-      "id": "ses_a385c592-204d-4ff7-ad12-2d394efbf02b",
-      "userId": "usr_88d725bc-0523-4c89-be82-9f690d304cec",
-      "createdAt": "2026-07-24T02:58:21.996Z"
-    },
-    {
-      "id": "ses_7b231944-21cf-475f-9904-7200934282f4",
-      "userId": "usr_6e7d22d7-216d-458c-aea1-159daef82d77",
-      "createdAt": "2026-07-24T02:59:17.063Z"
-    }
-  ]
+  "users": [],
+  "sessions": []
 }
