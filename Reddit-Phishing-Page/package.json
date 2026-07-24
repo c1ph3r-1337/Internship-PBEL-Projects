@@ -1,0 +1,13 @@
+{
+  "name": "reddit-page-json-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static Reddit page with a dependency-free JSON file backend.",
+  "scripts": {
+    "start": "node server.js",
+    "add-user": "node scripts/add-user.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

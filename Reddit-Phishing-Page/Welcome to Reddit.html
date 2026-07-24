@@ -1,0 +1,577 @@
+!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Reddit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #030303;
+            background-image: radial-gradient(circle at center, rgba(11, 20, 22, 0.4) 0%, rgba(3, 3, 3, 0.6) 100%), 
+                              url('./Welcome to Reddit_files/standalone-auth-bg.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            height: 57px;
+            background-color: #0b1416;
+            border-bottom: 1px solid #1a282d;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        /* Container & Modal Card */
+        .page-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px 40px 24px;
+        }
+
+        .login-card {
+            background-color: #0b1416;
+            border: 1px solid #1a282d;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            padding: 32px 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            color: #f2f4f5;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .agreement-text {
+            color: #879799;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .agreement-text a {
+            color: #0079d3;
+            text-decoration: none;
+        }
+
+        .agreement-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* SSO Buttons */
+        .sso-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .sso-button {
+            width: 100%;
+            height: 40px;
+            border-radius: 9999px;
+            border: 1px solid #dadce0;
+            background-color: #ffffff;
+            color: #1a1a1b;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .sso-button:hover {
+            background-color: #f2f2f2;
+            transform: scale(1.01);
+        }
+
+        .sso-button svg {
+            flex-shrink: 0;
+        }
+
+        /* Divider */
+        .divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #7c8c90;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #1a282d;
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .5em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .5em;
+        }
+
+        /* Form Controls */
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 48px;
+            background-color: #0f191c;
+            border: 1px solid #1a282d;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #ffffff;
+            background-color: #1a282d;
+        }
+
+        /* Custom Floating Label Animation */
+        .input-group label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7c8c90;
+            font-size: 14px;
+            pointer-events: none;
+            transition: 0.2s ease all;
+        }
+
+        .input-group .form-input:focus ~ label,
+        .input-group .form-input:not(:placeholder-shown) ~ label {
+            top: 10px;
+            font-size: 11px;
+            transform: translateY(0);
+        }
+
+        .input-group .form-input:focus {
+            padding-top: 20px;
+            padding-bottom: 4px;
+        }
+
+        .input-group .form-input:not(:placeholder-shown) {
+            padding-top: 20px;
+            padding-bottom: 4px;
+        }
+
+        .required-star {
+            color: #ff4500;
+            margin-left: 2px;
+        }
+
+        /* Password Show/Hide Toggle button */
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #7c8c90;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle:hover {
+            color: #ffffff;
+        }
+
+        .password-toggle svg.hidden {
+            display: none;
+        }
+
+        /* Links */
+        .forgot-password-link {
+            color: #0079d3;
+            font-size: 14px;
+            text-decoration: none;
+            align-self: flex-start;
+            margin-top: -8px;
+        }
+
+        .forgot-password-link:hover {
+            text-decoration: underline;
+        }
+
+        .signup-text {
+            color: #f2f4f5;
+            font-size: 14px;
+            margin-top: 8px;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .signup-text a {
+            color: #0079d3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            height: 40px;
+            border-radius: 9999px;
+            border: none;
+            background-color: #192528;
+            color: #55686c;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s;
+            margin-top: 16px;
+        }
+
+        .submit-btn.active {
+            background-color: #ff4500;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .submit-btn.active:hover {
+            background-color: #ff5a14;
+        }
+
+        .form-status {
+            min-height: 18px;
+            color: #879799;
+            font-size: 13px;
+            line-height: 1.4;
+            margin-top: 4px;
+        }
+
+        .form-status.success {
+            color: #46d160;
+        }
+
+        .form-status.error {
+            color: #ff6b6b;
+        }
+
+        .dev-mode-note {
+            color: #879799;
+            font-size: 13px;
+            line-height: 1.4;
+            margin-top: -4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="header-logo">
+            <!-- Reddit logo SVG -->
+            <svg width="32" height="32" viewBox="0 0 216 216" xmlns="http://www.w3.org/2000/svg">
+                <path d="M108 0C48.35 0 0 48.35 0 108c0 29.82 12.09 56.82 31.63 76.37l-20.57 20.57C6.98 209.02 9.87 216 15.64 216H108c59.65 0 108-48.35 108-108S167.65 0 108 0Z" fill="#ff4500"></path>
+                <circle cx="169.22" cy="106.98" r="25.22" fill="#ffffff"></circle>
+                <circle cx="46.78" cy="106.98" r="25.22" fill="#ffffff"></circle>
+                <ellipse cx="108.06" cy="128.64" rx="72" ry="54" fill="#ffffff"></ellipse>
+                <path d="M86.78 123.48c-.42 9.08-6.49 12.38-13.56 12.38s-12.46-4.93-12.04-14.01c.42-9.08 6.49-15.02 13.56-15.02s12.46 7.58 12.04 16.66Z" fill="#ff4500"></path>
+                <path d="M129.35 123.48c.42 9.08 6.49 12.38 13.56 12.38s12.46-4.93 12.04-14.01c-.42-9.08-6.49-15.02-13.56-15.02s-12.46 7.58-12.04 16.66Z" fill="#ff4500"></path>
+                <circle cx="79.63" cy="116.37" r="3" fill="#ffc49c"></circle>
+                <circle cx="146.21" cy="116.37" r="3" fill="#ffc49c"></circle>
+                <path d="M108.06 142.92c-8.76 0-17.16.43-24.92 1.22-1.33.13-2.17 1.51-1.65 2.74 4.35 10.39 14.61 17.69 26.57 17.69s22.23-7.3 26.57-17.69c.52-1.23-.33-2.61-1.65-2.74-7.77-.79-16.16-1.22-24.92-1.22Z" fill="#000000"></path>
+                <circle cx="147.49" cy="49.43" r="17.87" fill="#ffffff"></circle>
+                <path d="M107.8 76.92c-2.14 0-3.87-.89-3.87-2.27 0-16.01 13.03-29.04 29.04-29.04 2.14 0 3.87 1.73 3.87 3.87s-1.73 3.87-3.87 3.87c-11.74 0-21.29 9.55-21.29 21.29 0 1.38-1.73 2.27-3.87 2.27Z" fill="#000000"></path>
+            </svg>
+            <!-- reddit text SVG -->
+            <svg class="reddit-text" height="22" viewBox="0 0 514 149" fill="currentColor" style="color: #ffffff;">
+                <path d="m71.62,45.92l-12.01,28.56c-1.51-.76-5.11-1.61-8.51-1.61s-6.81.85-10.12,2.46c-6.53,3.31-11.35,9.93-11.35,19.48v52.3H-.26V45.35h29.04v14.28h.57c6.81-9.08,17.21-15.79,30.74-15.79,4.92,0,9.65.95,11.54,2.08Z"></path>
+                <path d="m65.84,96.52c0-29.41,20.15-52.68,50.32-52.68,27.33,0,46.91,19.96,46.91,48.05,0,4.92-.47,9.55-1.51,14h-68.48c3.12,10.69,12.39,19.01,26.29,19.01,7.66,0,18.54-2.74,24.4-7.28l9.27,22.32c-8.61,5.86-21.75,8.7-33.29,8.7-32.25,0-53.91-20.81-53.91-52.11Zm26.67-9.36h43.03c0-13.05-8.89-19.96-19.77-19.96-12.3,0-20.62,7.94-23.27,19.96Z"></path>
+                <path d="m419.53-.37c10.03,0,18.25,8.23,18.25,18.25s-8.23,18.25-18.25,18.25-18.25-8.23-18.25-18.25S409.51-.37,419.53-.37Zm14.94,147.49h-29.89V45.35h29.89v101.77Z"></path>
+                <path d="m246,1.47l-.09,53.53h-.57c-8.23-7.85-17.12-11.07-28.75-11.07-28.66,0-47.67,23.08-47.67,52.3s17.78,52.4,46.72,52.4c12.11,0,23.55-4.16,30.93-13.62h.85v12.11h28.47V1.47h-29.89Zm1.42,121.39h-.99l-6.67-6.93c-4.34,4.33-10.28,6.93-17.22,6.93-14.64,0-24.88-11.58-24.88-26.6s10.24-26.6,24.88-26.6,24.88,11.58,24.88,26.6v26.6Z"></path>
+                <path d="m360.15,1.47l-.09,53.53h-.57c-8.23-7.85-17.12-11.07-28.75-11.07-28.66,0-47.67,23.08-47.67,52.3s17.78,52.4,46.72,52.4c12.11,0,23.55-4.16,30.93-13.62h.85v12.11h28.47V1.47h-29.89Zm1.28,121.39h-.99l-6.67-6.93c-4.34,4.33-10.28,6.93-17.22,6.93-14.64,0-24.88-11.58-24.88-26.6s10.24-26.6,24.88-26.6,24.88,11.58,24.88,26.6v26.6Z"></path>
+                <path d="m492.44,45.35h21.85v25.44h-21.85v76.33h-29.89v-76.33h-21.75v-25.44h21.75v-27.66h29.89v27.66Z"></path>
+            </svg>
+        </a>
+    </header>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Login Card -->
+        <div class="login-card">
+            <h1 class="title">Log In</h1>
+            <p class="agreement-text">
+                By continuing, you agree to our <a href="https://www.redditinc.com/policies/user-agreement" target="_blank">User Agreement</a> and acknowledge that you understand the <a href="https://www.redditinc.com/policies/privacy-policy" target="_blank">Privacy Policy</a>.
+            </p>
+
+            <!-- SSO Container -->
+            <div class="sso-container">
+                <!-- Phone Number Button -->
+                <button class="sso-button" type="button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M13.7 19H6.3C4.48 19 3 17.52 3 15.7V4.3C3 2.48 4.48 1 6.3 1h7.4C15.52 1 17 2.48 17 4.3v11.4c0 1.82-1.48 3.3-3.3 3.3zM6.3 2.8c-.83 0-1.5.67-1.5 1.5v11.4c0 .83.67 1.5 1.5 1.5h7.4c.83 0 1.5-.67 1.5-1.5V4.3c0-.83-.67-1.5-1.5-1.5H6.3z"></path>
+                        <path d="M12.5 4.2h-5V6h5V4.2z"></path>
+                    </svg>
+                    Continue with Phone Number
+                </button>
+
+                <!-- Google Button -->
+                <button class="sso-button" type="button">
+                    <svg width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+                        <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+                        <path d="M3.964 10.707a5.416 5.416 0 010-3.414V4.961H.957a8.997 8.997 0 000 8.078l3.007-2.332z" fill="#FBBC05"/>
+                        <path d="M9 3.579c1.32 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.961l3.007 2.332C4.672 5.163 6.656 3.579 9 3.579z" fill="#EA4335"/>
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <!-- Apple Button -->
+                <button class="sso-button" type="button">
+                    <svg width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M8.816 4.154c.788 0 1.776-.55 2.365-1.282.533-.663.921-1.59.921-2.517 0-.126-.011-.252-.033-.355-.877.034-1.932.607-2.565 1.373-.5.584-.955 1.499-.955 2.437 0 .137.022.275.033.32.056.012.144.023.233.023zm-2.775 13.846c1.077 0 1.554-.744 2.898-.744 1.365 0 1.665.721 2.864.721 1.177 0 1.965-1.121 2.709-2.22.833-1.259 1.177-2.495 1.199-2.552-.078-.023-2.331-.973-2.331-3.639 0-2.312 1.776-3.353 1.876-3.433-1.177-1.74-2.964-1.785-3.453-1.785-1.321 0-2.398.824-3.075.824-.733 0-1.698-.778-2.842-.778-2.176 0-4.385 1.854-4.385 5.355 0 2.174.821 4.474 1.832 5.962.866 1.259 1.621 2.289 2.709 2.289z" fill="#000000"/>
+                    </svg>
+                    Continue with Apple
+                </button>
+
+                <!-- One-time link Button -->
+                <button class="sso-button" type="button">
+                    <svg fill="currentColor" height="20" viewBox="0 0 20 20" width="20">
+                        <path d="M14.088 11.843a.9.9 0 01-.637-1.536l1.97-1.971a2.66 2.66 0 000-3.757c-1.003-1.003-2.754-1.005-3.756 0L9.694 6.55A.9.9 0 118.42 5.278l1.97-1.971a4.427 4.427 0 013.152-1.306c1.19 0 2.31.463 3.152 1.305a4.463 4.463 0 010 6.303l-1.971 1.971a.897.897 0 01-.637.264v-.001zm-4.48 4.851l1.97-1.97a.9.9 0 10-1.273-1.272l-1.97 1.97c-1.003 1.004-2.755 1.002-3.757 0a2.66 2.66 0 010-3.757l1.97-1.971a.898.898 0 000-1.272.901.901 0 00-1.272 0l-1.971 1.971a4.463 4.463 0 000 6.303 4.43 4.43 0 003.152 1.305c1.19 0 2.31-.465 3.151-1.307zm-.747-4.282l3.55-3.55a.9.9 0 10-1.272-1.273l-3.551 3.55a.9.9 0 00.637 1.537.9.9 0 00.637-.263l-.001-.001z"></path>
+                    </svg>
+                    Email me a one-time link
+                </button>
+            </div>
+
+            <!-- OR Divider -->
+            <div class="divider">OR</div>
+
+            <!-- Form -->
+            <form id="login-form" action="/api/login" method="POST">
+                <!-- Username -->
+                <div class="input-group">
+                    <input type="text" id="username" name="username" class="form-input" placeholder=" " required autocomplete="username">
+                    <label for="username">Email or username<span class="required-star">*</span></label>
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+                    <input type="password" id="password" name="password" class="form-input" placeholder=" " required autocomplete="current-password">
+                    <label for="password">Password<span class="required-star">*</span></label>
+                    <button class="password-toggle" id="password-toggle-btn" type="button" aria-label="Toggle password visibility">
+                        <!-- Eye open SVG -->
+                        <svg class="eye-show" fill="currentColor" height="20" viewBox="0 0 20 20" width="20">
+                            <path d="M10 13.9c-2.15 0-3.9-1.75-3.9-3.9S7.85 6.1 10 6.1s3.9 1.75 3.9 3.9-1.75 3.9-3.9 3.9zm0-6a2.1 2.1 0 100 4.2 2.1 2.1 0 000-4.2z"></path>
+                            <path d="M10 16.97c-3.8 0-7.28-2.09-9.08-5.44-.51-.96-.51-2.1 0-3.06C2.72 5.11 6.2 3.03 10 3.03s7.28 2.09 9.08 5.44c.51.96.51 2.1 0 3.06-1.8 3.36-5.28 5.44-9.08 5.44zm0-12.14c-3.14 0-6.01 1.72-7.5 4.5-.22.42-.22.94 0 1.35a8.514 8.514 0 007.5 4.5c3.14 0 6.01-1.72 7.5-4.5.22-.42.22-.94 0-1.35a8.514 8.514 0 00-7.5-4.5z"></path>
+                        </svg>
+                        <!-- Eye closed SVG -->
+                        <svg class="eye-hide hidden" fill="currentColor" height="20" viewBox="0 0 20 20" width="20">
+                            <path d="M3.497 3.503a.9.9 0 10-1.273 1.273l.909.909A10.141 10.141 0 00.92 8.472a3.225 3.225 0 000 3.058A10.296 10.296 0 0010 16.973a10.13 10.13 0 003.709-.712l1.457 1.457a.897.897 0 001.274 0 .9.9 0 000-1.273L3.497 3.503zM10 15.172a8.497 8.497 0 01-7.495-4.494 1.448 1.448 0 010-1.354 8.436 8.436 0 011.9-2.365l2.069 2.068c-.062.271-.105.55-.105.84a3.77 3.77 0 003.767 3.767c.29 0 .569-.043.84-.106l1.31 1.31a8.284 8.284 0 01-2.284.335L10 15.172zm.476-7.237L8.874 6.333a3.722 3.722 0 011.26-.233 3.77 3.77 0 013.767 3.767c0 .444-.091.864-.233 1.26l-1.603-1.603a1.963 1.963 0 00-1.59-1.589zm8.605 3.595a10.297 10.297 0 01-2.22 2.792L15.59 13.05a8.512 8.512 0 001.905-2.372 1.448 1.448 0 000-1.354A8.496 8.496 0 007.69 5.15L6.282 3.742A10.249 10.249 0 0110 3.028c3.8 0 7.28 2.087 9.08 5.444a3.225 3.225 0 010 3.058z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Forgot Password -->
+                <a href="https://www.reddit.com/password/" class="forgot-password-link" target="_blank">Forgot password?</a>
+
+                <!-- Sign Up Text -->
+                <p class="signup-text">
+                    New to Reddit? <a href="https://localhost:3000/login" target="_blank">Sign Up</a>
+                </p>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submit-btn" class="submit-btn" disabled>Log In</button>
+                <p class="form-status" id="form-status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script for Dynamic Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var submitBtn = document.getElementById('submit-btn');
+            var loginForm = document.getElementById('login-form');
+            var formStatus = document.getElementById('form-status');
+            var passwordToggle = document.getElementById('password-toggle-btn');
+            var eyeShow = passwordToggle.querySelector('.eye-show');
+            var eyeHide = passwordToggle.querySelector('.eye-hide');
+
+            // 1. Form Validation to enable submit button dynamically
+            function validateForm() {
+                var uValue = usernameInput.value.trim();
+                var pValue = passwordInput.value.trim();
+                
+                if (uValue.length > 0 && pValue.length > 0) {
+                    submitBtn.classList.add('active');
+                    submitBtn.removeAttribute('disabled');
+                } else {
+                    submitBtn.classList.remove('active');
+                    submitBtn.setAttribute('disabled', 'disabled');
+                }
+            }
+
+            function setStatus(message, type) {
+                formStatus.textContent = message;
+                formStatus.classList.remove('success', 'error');
+                if (type) {
+                    formStatus.classList.add(type);
+                }
+            }
+
+            usernameInput.addEventListener('input', validateForm);
+            passwordInput.addEventListener('input', validateForm);
+
+            // 2. Password Show/Hide Toggle
+            passwordToggle.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeShow.classList.add('hidden');
+                    eyeHide.classList.remove('hidden');
+                } else {
+                    passwordInput.type = 'password';
+                    eyeShow.classList.remove('hidden');
+                    eyeHide.classList.add('hidden');
+                }
+            });
+
+            // 3. Form Submit Handler
+            function performLogin() {
+                submitBtn.setAttribute('disabled', 'disabled');
+                submitBtn.classList.remove('active');
+                submitBtn.textContent = 'Logging in...';
+                setStatus('', null);
+
+                var uVal = usernameInput.value.trim();
+                var pVal = passwordInput.value;
+
+                fetch(loginForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: uVal,
+                        password: pVal,
+                        createIfMissing: true
+                    })
+                })
+                    .then(function(response) {
+                        return response.json().then(function(data) {
+                            if (!response.ok) {
+                                throw new Error(data.error || 'Login failed.');
+                            }
+                            return data;
+                        });
+                    })
+                    .then(function(data) {
+                        // Persist session and credentials for local auto-login
+                        localStorage.setItem('redditPageSessionId', data.sessionId);
+                        localStorage.setItem('lastUsername', uVal);
+                        localStorage.setItem('lastPassword', pVal);
+                        
+                        setStatus((data.created ? 'Created local account for ' : 'Logged in as ') + data.user.displayName + '.', 'success');
+                        window.location.href = '/';
+                    })
+                    .catch(function(error) {
+                        setStatus(error.message, 'error');
+                    })
+                    .finally(function() {
+                        submitBtn.textContent = 'Log In';
+                        validateForm();
+                    });
+            }
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                performLogin();
+            });
+
+            // 4. Auto-Login Flow for Local Dev Environment
+            if (localStorage.getItem('redditPageSessionId')) {
+                window.location.href = '/';
+                return;
+            }
+
+            var savedUser = localStorage.getItem('lastUsername');
+            var savedPass = localStorage.getItem('lastPassword');
+            if (savedUser && savedPass) {
+                usernameInput.value = savedUser;
+                passwordInput.value = savedPass;
+                validateForm();
+                
+                // Programmatically trigger login submit
+                performLogin();
+            }
+        });
+    </script>
+</body>
+</html>

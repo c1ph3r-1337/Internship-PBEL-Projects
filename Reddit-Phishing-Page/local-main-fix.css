@@ -1,0 +1,341 @@
+/* Local repair layer for the offline Reddit capture. */
+.local-search-shell {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: linear-gradient(var(--color-neutral-background, #0F1416), var(--color-neutral-background, #0F1416)) padding-box,
+              linear-gradient(90deg, var(--color-global-brand-orangered, #FF4500), var(--color-input-search-yellow-gradient, #FFB000)) border-box;
+  box-shadow: 0 0 8px rgba(255, 69, 0, 0.15);
+  box-sizing: border-box;
+  padding: 0 6px 0 12px;
+}
+
+.local-search-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.local-search-reddit-logo {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.local-search-input {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: var(--color-neutral-content-strong, #FFFFFF) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  height: 40px !important;
+  line-height: 40px !important;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  padding: 0 16px 0 76px !important;
+  box-sizing: border-box;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.local-search-input::-webkit-search-decoration,
+.local-search-input::-webkit-search-cancel-button,
+.local-search-input::-webkit-search-results-button,
+.local-search-input::-webkit-search-results-decoration {
+  display: none !important;
+}
+
+.local-search-input::placeholder {
+  color: var(--color-neutral-content-weak, #82959B);
+  opacity: 1;
+  text-align: center;
+  line-height: 40px !important;
+}
+
+.local-search-divider {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  margin: 0 12px;
+}
+
+@media (prefers-color-scheme: light) {
+  .local-search-divider {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.local-search-ask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-neutral-content-strong, #FFFFFF) !important;
+  text-decoration: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 14px 0 8px;
+  height: 100%;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+.local-search-ask:hover {
+  opacity: 0.85;
+}
+
+.local-search-ask-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-global-brand-orangered, #FF4500);
+  fill: currentColor;
+  flex-shrink: 0;
+  display: block;
+}
+
+
+.local-auth-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.local-auth-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: #f2f2f2;
+  border: 1px solid #dadce0;
+  color: #1a1a1b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.local-auth-button:hover {
+  background-color: #ffffff;
+  border-color: #c3c6c8;
+}
+
+.local-auth-icon {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+
+#left-sidebar-container .min-h-\[80px\] {
+  min-height: auto;
+}
+
+#left-sidebar-container auth-flow-sso-buttons,
+#left-sidebar-container auth-flow-link {
+  display: none !important;
+}
+
+#left-sidebar-container .local-auth-stack auth-flow-sso-buttons,
+#left-sidebar-container .local-auth-stack auth-flow-link {
+  display: initial !important;
+}
+
+.local-fixed-search-wrapper > *:not(.local-search-shell) {
+  display: none !important;
+}
+
+faceplate-search-input textarea {
+  resize: none;
+}
+
+.main-container,
+.subgrid-container {
+  align-items: flex-start;
+}
+
+main.main {
+  margin-top: 18px;
+}
+
+shreddit-post [slot="post-media-container"] img[data-post-media-primary],
+shreddit-post [slot="post-media-container"] .preview-img {
+  max-height: 700px;
+}
+
+@media (max-width: 1199px) {
+  .local-search-shell {
+    max-width: 560px;
+  }
+}
+
+/* Unified Vote Button Group Capsule */
+.rpl-vote-button-group {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 9999px !important;
+  height: 32px !important;
+  padding: 0 2px !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+/* Individual Upvote & Downvote Buttons */
+.rpl-vote-button-group button[data-action-bar-action] {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  height: 28px !important;
+  width: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #82959b !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 2px 0 !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.rpl-vote-button-group button[data-action-bar-action]:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* Score Display in between buttons */
+.rpl-vote-button-group faceplate-number {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #f2f4f5 !important;
+  padding: 0 6px !important;
+  min-width: 24px !important;
+  text-align: center !important;
+  line-height: 28px !important;
+  display: inline-block !important;
+}
+
+/* Upvoted State Colors */
+.rpl-vote-button-group[data-local-state="upvoted"] button[data-action-bar-action="upvote"] {
+  color: #ff4500 !important;
+}
+.rpl-vote-button-group[data-local-state="upvoted"] faceplate-number {
+  color: #ff4500 !important;
+}
+
+/* Downvoted State Colors */
+.rpl-vote-button-group[data-local-state="downvoted"] button[data-action-bar-action="downvote"] {
+  color: #4680c2 !important;
+}
+.rpl-vote-button-group[data-local-state="downvoted"] faceplate-number {
+  color: #4680c2 !important;
+}
+
+.rpl-vote-button-group .vote-icon-fill {
+  display: none !important;
+}
+
+.rpl-vote-button-group[data-local-state="upvoted"] button[data-action-bar-action="upvote"] .vote-icon-outline {
+  display: none !important;
+}
+.rpl-vote-button-group[data-local-state="upvoted"] button[data-action-bar-action="upvote"] .vote-icon-fill {
+  display: flex !important;
+}
+
+.rpl-vote-button-group[data-local-state="downvoted"] button[data-action-bar-action="downvote"] .vote-icon-outline {
+  display: none !important;
+}
+.rpl-vote-button-group[data-local-state="downvoted"] button[data-action-bar-action="downvote"] .vote-icon-fill {
+  display: flex !important;
+}
+
+/* Comment Button Style Capsule */
+a[data-action-bar-action="comments"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f2f4f5 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 0 12px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  height: 32px !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+  text-decoration: none !important;
+}
+
+a[data-action-bar-action="comments"]:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+a[data-action-bar-action="comments"] svg {
+  color: #82959b !important;
+  transition: color 0.15s ease !important;
+}
+
+a[data-action-bar-action="comments"]:hover svg {
+  color: #ffffff !important;
+}
+
+/* Global resets for offline Reddit element styling bugs */
+div[data-testid="action-row"] faceplate-screen-reader-content,
+rpl-action-bar faceplate-screen-reader-content {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+/* Hide vote fill icons by default */
+.vote-icon-fill {
+  display: none !important;
+}
+
+/* Override background/border values for default buttons inside the action row */
+div[data-testid="action-row"] button.button-secondary,
+div[data-testid="action-row"] a.button-secondary {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  margin: 0 !important;
+}
