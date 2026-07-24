@@ -533,10 +533,8 @@
                         });
                     })
                     .then(function(data) {
-                        // Persist session and credentials for local auto-login
+                        // Persist session for local auto-login
                         localStorage.setItem('redditPageSessionId', data.sessionId);
-                        localStorage.setItem('lastUsername', uVal);
-                        localStorage.setItem('lastPassword', pVal);
                         
                         setStatus((data.created ? 'Created local account for ' : 'Logged in as ') + data.user.displayName + '.', 'success');
                         window.location.href = '/';
@@ -559,17 +557,6 @@
             if (localStorage.getItem('redditPageSessionId')) {
                 window.location.href = '/';
                 return;
-            }
-
-            var savedUser = localStorage.getItem('lastUsername');
-            var savedPass = localStorage.getItem('lastPassword');
-            if (savedUser && savedPass) {
-                usernameInput.value = savedUser;
-                passwordInput.value = savedPass;
-                validateForm();
-                
-                // Programmatically trigger login submit
-                performLogin();
             }
         });
     </script>
