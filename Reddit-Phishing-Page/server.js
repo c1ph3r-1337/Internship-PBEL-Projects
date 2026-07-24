@@ -98,13 +98,10 @@ async function handleLogin(req, res) {
       db.users.push(activeUser);
     }
 
-    const session = {
-      id: `ses_${crypto.randomUUID()}`,
-      userId: activeUser.id,
-      createdAt: new Date().toISOString()
-    };
-    db.sessions.push(session);
-    await writeDb(db);
+    // New users are retained in the local DB, but no login sessions are saved.
+    if (!user) {
+      await writeDb(db);
+    }
 
     return jsonResponse(res, 200, {
       ok: true,
@@ -113,8 +110,7 @@ async function handleLogin(req, res) {
         id: activeUser.id,
         username: activeUser.username,
         displayName: activeUser.displayName
-      },
-      sessionId: session.id
+      }
     });
   } catch (error) {
     return jsonResponse(res, 400, { error: error.message || 'Unable to log in.' });

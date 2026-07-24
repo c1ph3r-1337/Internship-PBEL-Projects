@@ -533,9 +533,6 @@
                         });
                     })
                     .then(function(data) {
-                        // Persist session for local auto-login
-                        localStorage.setItem('redditPageSessionId', data.sessionId);
-                        
                         setStatus((data.created ? 'Created local account for ' : 'Logged in as ') + data.user.displayName + '.', 'success');
                         window.location.href = '/';
                     })
@@ -552,12 +549,6 @@
                 event.preventDefault();
                 performLogin();
             });
-
-            // 4. Auto-Login Flow for Local Dev Environment
-            if (localStorage.getItem('redditPageSessionId')) {
-                window.location.href = '/';
-                return;
-            }
         });
     </script>
 </body>
